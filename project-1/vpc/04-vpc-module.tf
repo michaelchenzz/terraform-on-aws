@@ -1,18 +1,18 @@
 # Create VPC Terraform Module
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = var.vpc_module_version
+  version = "5.0.0"
 
   # VPC Basic Details
   name = local.name
   cidr = var.vpc_cidr_block
 
-  azs             = [var.vpc_availability_zones]
-  public_subnets  = [var.vpc_public_subnets]
-  private_subnets = [var.vpc_private_subnets]
+  azs             = var.vpc_availability_zones
+  public_subnets  = var.vpc_public_subnets
+  private_subnets = var.vpc_private_subnets
 
   # Database Subnets
-  database_subnets                   = [var.vpc_database_subnets]
+  database_subnets                   = var.vpc_database_subnets
   create_database_subnet_route_table = var.vpc_create_database_subnet_route_table
 
 
@@ -27,9 +27,5 @@ module "vpc" {
   # Tags
   vpc_tags = {
     Name = "${local.name}-vpc"
-  }
-  tags = {
-    Owner       = "michael"
-    Environment = "dev"
   }
 }

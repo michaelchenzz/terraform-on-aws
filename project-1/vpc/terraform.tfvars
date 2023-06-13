@@ -1,5 +1,5 @@
 # Generic variables
 aws_region  = "ap-southeast-1"
-profile     = "default"
+aws_profile = "default"
 project     = "dattt"
 environment = "dev"

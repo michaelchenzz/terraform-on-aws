@@ -1,8 +1,3 @@
-variable "vpc_module_version" {
-  description = "VPC Terraform module version which creates VPC resources on AWS"
-  type        = string
-}
-
 variable "vpc_cidr_block" {
   description = "AWS Profile for this specific project"
   type        = string
@@ -38,8 +33,7 @@ variable "vpc_enable_nat_gateway" {
   type        = bool
 }
 
-# VPC Single NAT Gateway (True or False)
 variable "vpc_single_nat_gateway" {
-  description = "Enable only single NAT Gateway in one Availability Zone to save costs during our demos"
+  description = "Enable only single NAT Gateway in one Availability Zone to save costs"
   type        = bool
 }
