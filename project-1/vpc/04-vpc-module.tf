@@ -4,7 +4,7 @@ module "vpc" {
   version = "5.0.0"
 
   # VPC Basic Details
-  name = local.name
+  name = local.name // This will be the prefix in the name of subnets, route tables, internet gateways, nat gateways
   cidr = var.vpc_cidr_block
 
   azs             = var.vpc_availability_zones
