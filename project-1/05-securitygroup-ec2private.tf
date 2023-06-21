@@ -18,6 +18,7 @@ module "sg_ec2private" {
   #       cidr_blocks = "30.30.30.30/32"
   #     },
   #   ]
+
   # Egress -  Allow all
   egress_rules = ["all-all"]
 }
