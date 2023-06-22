@@ -18,3 +18,7 @@ data "aws_ami" "al2023" {
     values = ["hvm"]
   }
 }
+
+output "latest_ami_al2023" {
+  value = data.aws_ami.al2023.image_id
+}
