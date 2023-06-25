@@ -8,4 +8,11 @@ module "ec2_bastion" {
   key_name               = var.instance_keypair
   subnet_id              = module.vpc.public_subnets[0]
   vpc_security_group_ids = [module.sg_ec2bastion.security_group_id]
+  root_block_device = [
+    {
+      volume_size = var.bastion_ebs_root_size
+      throughput  = var.bastion_ebs_root_throughput
+      iops        = var.bastion_ebs_root_iops
+    }
+  ]
 }

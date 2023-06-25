@@ -1,0 +1,9 @@
+instance_keypair            = "dattt"
+bastion_instance_type       = "t3.nano"
+bastion_ebs_root_size       = 8
+bastion_ebs_root_throughput = 125
+bastion_ebs_root_iops       = 3000
+private_instance_type       = "t3.micro"
+private_ebs_root_size       = 8
+private_ebs_root_throughput = 125
+private_ebs_root_iops       = 3000

@@ -3,3 +3,7 @@ resource "aws_eip" "bastion_eip" {
   instance   = module.ec2_bastion.id
   domain     = "vpc"
 }
+
+output "bastion_eip" {
+  value = aws_eip.bastion_eip.public_ip
+}

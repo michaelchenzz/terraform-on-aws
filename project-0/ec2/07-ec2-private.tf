@@ -10,5 +10,12 @@ module "ec2_private" {
   subnet_id     = module.vpc.private_subnets[0]
   #subnet_ids             = [module.vpc.private_subnets[0], module.vpc.private_subnets[1]]
   vpc_security_group_ids = [module.sg_ec2private.security_group_id]
-  user_data              = file("${path.module}/app1.sh")
+  root_block_device = [
+    {
+      volume_size = var.private_ebs_root_size
+      throughput  = var.private_ebs_root_throughput
+      iops        = var.private_ebs_root_iops
+    }
+  ]
+  user_data = file("${path.module}/app1.sh")
 }

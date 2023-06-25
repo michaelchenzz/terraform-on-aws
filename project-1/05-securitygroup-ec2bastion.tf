@@ -7,8 +7,8 @@ module "sg_ec2bastion" {
 
   # Ingress - Allow HTTP and SSH to all
   ingress_rules       = ["ssh-tcp", "http-80-tcp"]
-  ingress_cidr_blocks = ["0.0.0.0/0"] // List of IPv4 CIDR ranges to use on ALL ingress rules --> NEED TO OPTIMIZE
+  ingress_cidr_blocks = ["0.0.0.0/0"] // List of IPv4 CIDR ranges to use on ALL ingress rules
 
-  # Egress -  Allow all
+  # Egress - Allow all
   egress_rules = ["all-all"]
 }
