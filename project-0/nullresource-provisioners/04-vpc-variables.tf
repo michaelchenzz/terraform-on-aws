@@ -27,13 +27,3 @@ variable "vpc_create_database_subnet_route_table" {
   description = "Whether or not to create VPC Database Subnet Route Table"
   type        = bool
 }
-
-variable "vpc_enable_nat_gateway" {
-  description = "Enable NAT Gateways for Private Subnets Outbound Communication"
-  type        = bool
-}
-
-variable "vpc_single_nat_gateway" {
-  description = "Enable only single NAT Gateway in one Availability Zone to save costs"
-  type        = bool
-}

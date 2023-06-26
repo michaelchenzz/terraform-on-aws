@@ -23,14 +23,6 @@ resource "null_resource" "name" {
 
   # Local Exec Provisioner: Create-time Provisioner
   provisioner "local-exec" {
-    command = "echo VPC created on `date` and VPC ID: ${module.vpc.vpc_id} >> creation-time-vpc-id.txt"
-    #on_failure = continue
+    command = "echo VPC created on ${formatdate("EEEE, DD MMM YYYY hh:mm:ss ZZZ", timestamp())} and VPC ID: ${module.vpc.vpc_id} >> creation-time-provisioner.txt"
   }
-
-  # Local Exec Provisioner: Destroy-time Provisioner
-  # provisioner "local-exec" {
-  #   command = "echo Destroy time prov `date` >> destroy-time-prov.txt"
-  #   when    = destroy
-  #   #on_failure = continue
-  # }
 }
