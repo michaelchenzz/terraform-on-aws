@@ -1,5 +1,5 @@
 resource "aws_eip" "bastion_eip" {
-  depends_on = [module.vpc, module.ec2_bastion]
+  depends_on = [module.vpc]
   instance   = module.ec2_bastion.id
   domain     = "vpc"
 
