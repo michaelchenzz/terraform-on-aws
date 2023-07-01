@@ -5,7 +5,7 @@ module "sg_alb" {
   name   = "${local.name}-sg-alb"
   vpc_id = module.vpc.vpc_id
 
-  # Ingress - Allow HTTP and HTTPS to all
+  # Ingress - Allow HTTP, HTTPS to all
   ingress_rules       = ["http-80-tcp", "https-443-tcp"]
   ingress_cidr_blocks = ["0.0.0.0/0"] // List of IPv4 CIDR ranges to use on ALL ingress rules
 
