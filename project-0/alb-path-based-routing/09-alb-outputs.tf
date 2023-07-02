@@ -3,6 +3,11 @@ output "lb_dns_name" {
   value       = module.alb.lb_dns_name
 }
 
+output "lb_zone_id" {
+  description = "The zone_id of the load balancer to assist with creating DNS records"
+  value       = module.alb.lb_zone_id
+}
+
 output "target_group_names" {
   description = "Name of the target group. Useful for passing to your CodeDeploy Deployment Group."
   value       = module.alb.target_group_names
