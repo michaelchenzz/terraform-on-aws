@@ -10,13 +10,10 @@ module "sg_ec2private" {
     {
       rule                     = "ssh-tcp"
       source_security_group_id = module.sg_ec2bastion.security_group_id
-    }
-  ]
-
-  ingress_with_cidr_blocks = [
+    },
     {
-      rule        = "http-80-tcp"
-      cidr_blocks = module.vpc.vpc_cidr_block
+      rule                     = "http-80-tcp"
+      source_security_group_id = module.sg_alb.security_group_id
     }
   ]
 
