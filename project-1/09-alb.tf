@@ -6,9 +6,35 @@ module "alb" {
 
   load_balancer_type = "application"
 
-  vpc_id          = module.vpc.vpc_id
-  subnets         = module.vpc.public_subnets
-  security_groups = [module.sg_alb.security_group_id]
+  vpc_id  = module.vpc.vpc_id
+  subnets = module.vpc.public_subnets
+
+  # Attach rules to the created security group
+  security_group_rules = {
+    ingress_all_http = {
+      type        = "ingress"
+      from_port   = 80
+      to_port     = 80
+      protocol    = "tcp"
+      description = "HTTP web traffic"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+    ingress_all_https = {
+      type        = "ingress"
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      description = "HTTPS web traffic"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+    egress_all = {
+      type        = "egress"
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
 
   # HTTP Listener - HTTP to HTTPS Redirect
   http_tcp_listeners = [
@@ -84,7 +110,7 @@ module "alb" {
       ]
 
       conditions = [{
-        path_patterns = ["/app1*"]
+        path_patterns = [var.app1_path]
       }]
     },
     # Rule-4: /app2* should go to App2 EC2 Instances
@@ -99,7 +125,7 @@ module "alb" {
       ]
 
       conditions = [{
-        path_patterns = ["/app2*"]
+        path_patterns = [var.app2_path]
       }]
     }
   ]
