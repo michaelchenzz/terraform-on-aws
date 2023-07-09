@@ -24,6 +24,7 @@ locals {
       subnet_id = element(module.vpc.private_subnets, 2)
       user_data = file("${path.module}/user-data/app2.sh")
     }
+    /*
     app3-1 = {
       subnet_id = element(module.vpc.private_subnets, 0)
       user_data = file("${path.module}/user-data/app3.sh")
@@ -36,5 +37,6 @@ locals {
       subnet_id = element(module.vpc.private_subnets, 2)
       user_data = file("${path.module}/user-data/app3.sh")
     }
+    */
   }
 }

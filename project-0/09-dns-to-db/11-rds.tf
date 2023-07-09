@@ -3,11 +3,11 @@ module "rds" {
   version = "6.0.0"
 
   # Engine options
-  engine         = "mysql"
-  engine_version = "8.0.33"
+  engine         = var.db_engine
+  engine_version = var.db_engine_version
 
   # Availability and durability
-  multi_az = true
+  multi_az = var.db_multi_az
 
   # Settings
   identifier = "${local.name}-db"
@@ -15,34 +15,35 @@ module "rds" {
   password   = var.db_password
 
   # Instance configuration
-  instance_class = "db.t3.micro"
+  instance_class = var.db_instance_class
 
   # Storage
-  storage_type          = "gp3"
-  allocated_storage     = 20
-  max_allocated_storage = 1000
+  storage_type          = var.db_storage_type
+  allocated_storage     = var.db_allocated_storage
+  max_allocated_storage = var.db_max_allocated_storage
 
   # Connectivity
   subnet_ids             = module.vpc.database_subnets
   vpc_security_group_ids = [module.sg_db.security_group_id]
   create_db_subnet_group = true
   db_subnet_group_name   = "${local.name}-subnet-group"
-  publicly_accessible    = false
-  port                   = 3306
+  publicly_accessible    = var.db_publicly_accessible
+  port                   = var.db_port
 
   # Monitoring
-  performance_insights_enabled          = true
-  performance_insights_retention_period = 7
-  monitoring_role_arn                   = "arn:aws:iam::319656628632:role/rds-monitoring-role"
-  monitoring_interval                   = 60
+  /*
+  performance_insights_enabled          = var.db_performance_insights_enabled
+  performance_insights_retention_period = var.db_performance_insights_retention_period
+  monitoring_role_arn                   = var.db_monitoring_role_arn
+  monitoring_interval                   = var.db_monitoring_interval
+  */
 
   # Additional configuration
-  family                          = "mysql8.0" # DB parameter group
-  major_engine_version            = "8.0"      # DB option group
-  backup_retention_period         = 0
-  skip_final_snapshot             = true
-  deletion_protection             = false
-  enabled_cloudwatch_logs_exports = ["general"]
+  family               = var.db_family               # DB parameter group
+  major_engine_version = var.db_major_engine_version # DB option group
+  skip_final_snapshot  = var.db_skip_final_snapshot
+  deletion_protection  = var.db_deletion_protection
+  // enabled_cloudwatch_logs_exports = var.db_enabled_cloudwatch_logs_exports
 
   parameters = [
     {
